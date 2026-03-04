@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Platillos Saludables - Nutrición</title>
+
+<style>
+body{
+    margin:0;
+    font-family: Arial, Helvetica, sans-serif;
+    background:#f2f6f7;
+    text-align:center;
+}
+
+h1{
+    padding:20px;
+    color:#2c3e50;
+}
+
+/* ===== CARRUSEL ===== */
+.carousel{
+    position:relative;
+    width:90%;
+    max-width:1000px;
+    margin:auto;
+    overflow:hidden;
+}
+
+.slides{
+    display:flex;
+    transition:transform .5s ease;
+}
+
+/* ===== TARJETAS ===== */
+.card{
+    position:relative;
+    min-width:100%;
+    height:420px;
+    cursor:pointer;
+    transition:.4s;
+}
+
+.card img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* info oculta */
+.info{
+    position:absolute;
+    bottom:0;
+    width:100%;
+    background:rgba(0,0,0,.75);
+    color:white;
+    padding:20px;
+    transform:translateY(100%);
+    transition:.4s;
+}
+
+/* efecto hover */
+.card:hover{
+    transform:scale(1.03);
+    z-index:10;
+}
+
+.card:hover .info{
+    transform:translateY(0);
+}
+
+/* botones */
+.btn{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    background:#2ecc71;
+    border:none;
+    padding:10px 15px;
+    color:white;
+    font-size:18px;
+    cursor:pointer;
+}
+
+.prev{ left:10px;}
+.next{ right:10px;}
+</style>
+</head>
+
+<body>
+
+<h1>🍽️ Platillos Saludables</h1>
+
+<div class="carousel">
+
+    <div class="slides" id="slides">
+
+        <!-- Platillo 1 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c">
+            <div class="info">
+                <h2>Ensalada Balanceada</h2>
+                <p>Lechuga, tomate, aguacate y pollo.</p>
+                <p>🥬 Alta en fibra | 350 kcal</p>
+            </div>
+        </div>
+
+        <!-- Platillo 2 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1604908176997-125f25cc6f3d">
+            <div class="info">
+                <h2>Pechuga a la plancha</h2>
+                <p>Pollo + arroz integral + verduras.</p>
+                <p>💪 Proteína magra | 450 kcal</p>
+            </div>
+        </div>
+
+        <!-- Platillo 3 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836">
+            <div class="info">
+                <h2>Tacos de pescado</h2>
+                <p>Pescado al horno, repollo y salsa natural.</p>
+                <p>🐟 Omega 3 | 400 kcal</p>
+            </div>
+        </div>
+
+        <!-- Platillo 4 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1488477181946-6428a0291777">
+            <div class="info">
+                <h2>Yogurt con frutas</h2>
+                <p>Yogurt natural, fresas y granola.</p>
+                <p>🍓 Probióticos | 250 kcal</p>
+            </div>
+        </div>
+
+    </div>
+
+    <button class="btn prev" onclick="move(-1)">❮</button>
+    <button class="btn next" onclick="move(1)">❯</button>
+
+</div>
+
+<script>
+let index = 0;
+
+function move(step){
+    const slides = document.getElementById("slides");
+    const total = slides.children.length;
+
+    index += step;
+
+    if(index < 0) index = total-1;
+    if(index >= total) index = 0;
+
+    slides.style.transform = `translateX(-${index * 100}%)`;
+}
+
+/* automático */
+setInterval(()=> move(1), 4000);
+</script>
+
+</body>
+</html>
